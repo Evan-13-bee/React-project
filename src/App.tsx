@@ -30,10 +30,9 @@ function App(props: any) {
           />
           <Route path='/profile' render={() =>
             <Profile
-              updateNewPostText={props.updateNewPostText}
-              newPostText={props.state.profilePage.newPostText}
-              posts={props.state.profilePage.posts}
-              dispatch={props.dispatch} />}
+              state={props.state}
+              store={props.store}
+            />}
           /> {/*render () => <Profile posts={posts}/>}  */}
         </div>
       </div>
@@ -42,3 +41,9 @@ function App(props: any) {
 }
 
 export default App;
+
+
+// updateNewPostText = { props.updateNewPostText }
+// newPostText = { props.state.profilePage.newPostText }
+// posts = { props.state.profilePage.posts }
+// dispatch = { props.dispatch } 

@@ -37,5 +37,5 @@ export const dialogsReducer = (state: any = initialState, action: any) => {
       message: action.newMessage
     })
   }
-  return state
+  return state //зачем нам return если снаружи мы перерисовываем весь массив
 }

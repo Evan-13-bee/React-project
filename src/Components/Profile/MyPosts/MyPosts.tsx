@@ -5,7 +5,7 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 export type PropsPostsType = {
     posts: Array<PostsType>
-    dispatch: (postMessage: object) => void
+    addPost: () => void
     newPostText: string
     updateNewPostText: (postMessage: string) => void
 }
@@ -24,16 +24,13 @@ const MyPosts = (props: PropsPostsType) => {
     let newPostElement = useRef<HTMLTextAreaElement>(null)
     let addPost = () => {
         let text = newPostElement.current?.value
-        if (text) { 
-            props.dispatch(addPostActionCreator()) 
-            // props.updateNewPostText('')
-        }
+        props.addPost()
     }
 
     let onPostChange = (e: { currentTarget: { value: string; }; }) => {
         let text = newPostElement.current?.value
         if (text) {
-            props.dispatch(updateNewPostTextActionCreator(text))
+            props.updateNewPostText(text)
         }
     }
 

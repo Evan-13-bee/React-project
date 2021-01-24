@@ -45,10 +45,10 @@ export let store = {
     this._callSubscriber = observer
   },
   dispatch(action: any) {
-    dialogsReducer(this._state.dialogsPage, action)
+    dialogsReducer(this._state.dialogsPage, action) // если отдать кусок массива в функцию, фунция меняет исходный массив?
     profileReducer(this._state.profilePage, action)
 
-    this._callSubscriber(this._state)
+    this._callSubscriber(this._state) // нужен ли здесь параметр, ведь перерисовка вызывается без него
   }
 }
 
