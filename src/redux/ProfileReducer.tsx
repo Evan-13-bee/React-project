@@ -15,7 +15,7 @@ let initialState: InitialStateType = {
   newPostText: 'it-camasutra'
 }
 
-export const profileReducer = (state: any=initialState, action: any) => {
+export const profileReducer = (state: InitialStateType=initialState, action: any): InitialStateType => {
   if (action.type === 'ADD-POST') {
     let newPost = {
       id: 5,

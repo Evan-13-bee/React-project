@@ -25,7 +25,7 @@ let initialState: DialogsType = {
 
 
 
-export const dialogsReducer = (state: any = initialState, action: any) => {
+export const dialogsReducer = (state: any = initialState, action: any): any => {
   if (action.type == 'ADD-NEW-MESSAGE') {
     // state.dialogs.push({
     //   id: state.dialogs.length,

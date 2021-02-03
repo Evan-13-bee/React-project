@@ -7,36 +7,25 @@ import Navbar from './Components/Navbar/Navbar';
 import Dialogs, { DialogsType } from './Components/Dialogs/Dialogs';
 import { BrowserRouter, Route } from 'react-router-dom'
 import { PropsPostsType } from './Components/Profile/MyPosts/MyPosts';
+import { DialogsContainer } from './Components/Dialogs/DialogsContainer';
 
-type AppType = {
-  dialogs: DialogsType,
-  posts: PropsPostsType
-}
+type AppType = {}
 
-function App(props: any) {
+function App(props: AppType) {
 
   return (
-    <BrowserRouter>
-      <div className="app-wrapper">
-        <Header />
-        <Navbar />
-        <div className='app-wrapper-content'>
-          <Route path='/dialogs' render={() =>
-            <Dialogs
-              messages={props.state.dialogsPage.messages}
-              dialogs={props.state.dialogsPage.dialogs}
-              dispatch={props.dispatch}
-            />}
-          />
-          <Route path='/profile' render={() =>
-            <Profile
-              state={props.state}
-              store={props.store}
-            />}
-          /> {/*render () => <Profile posts={posts}/>}  */}
-        </div>
+    <div className="app-wrapper">
+      <Header />
+      <Navbar />
+      <div className='app-wrapper-content'>
+        <Route path='/dialogs' render={() =>
+          <DialogsContainer />}
+        />
+        <Route path='/profile' render={() =>
+          <Profile/>}
+        /> {/*render () => <Profile posts={posts}/>}  */}
       </div>
-    </BrowserRouter>
+    </div>
   );
 }
 

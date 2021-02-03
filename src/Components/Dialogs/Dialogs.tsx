@@ -25,7 +25,10 @@ export type ArrayType = {
 const Dialogs = (props: DialogsType) => {
 
 let [message, setMessage] = useState<string>('')
-let addNewMessage = () => props.dispatch(addNewDialogsMessage(message))
+let addNewMessage = () => {
+    props.dispatch(message)
+    setMessage('')
+}
 
 
     let dialogsElements = props.dialogs.map((d: ArrayType) => <DialogItem img={d.img} name={d.name} id={d.id} />); 
