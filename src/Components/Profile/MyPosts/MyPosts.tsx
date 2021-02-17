@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/state';
 import { ArrayType } from '../../Dialogs/Dialogs';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';

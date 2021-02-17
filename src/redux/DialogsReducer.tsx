@@ -1,9 +1,12 @@
 import React from 'react';
 import { ArrayType, MessagesType } from '../Components/Dialogs/Dialogs';
-type DialogsType = {
+export type DialogsType = {
   dialogs: Array<ArrayType>,
   messages: Array<MessagesType>,
 }
+
+export type DialogsReducerActionType =
+  ReturnType<typeof addNewDialogsMessage>
 
 let initialState: DialogsType = {
   messages: [
@@ -25,17 +28,24 @@ let initialState: DialogsType = {
 
 
 
-export const dialogsReducer = (state: any = initialState, action: any): any => {
+export const dialogsReducer = (state: DialogsType = initialState, action: DialogsReducerActionType): DialogsType => {
+
   if (action.type == 'ADD-NEW-MESSAGE') {
     // state.dialogs.push({
     //   id: state.dialogs.length,
     //   name: 'User',
     //   img: 'https://wallpaper-house.com/data/out/5/wallpaper2you_60587.jpg'
     // })
-    state.messages.push({
-      id: state.messages.length,
-      message: action.newMessage
-    })
-  }
+    return {
+      ...state,
+      messages: [
+        ...state.messages,
+        { id: state.messages.length, message: action.newMessage }// как работает изменение state если передается только кусок стейта
+      ]}}
   return state //зачем нам return если снаружи мы перерисовываем весь массив
 }
+
+export let addNewDialogsMessage = (text: string) => ({
+  type: 'ADD-NEW-MESSAGE',
+  newMessage: text
+}) as const

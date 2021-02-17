@@ -1,12 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { Dispatch, useRef, useState } from 'react';
 import { connect } from 'react-redux';
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/state';  
+import { updateNewPostTextActionCreator, addPostActionCreator, ProfileReducerActionType, InitialStateType } from '../../../redux/ProfileReducer';
+import { StateStoreType } from '../../../redux/ReduxStore';
 import { ArrayType } from '../../Dialogs/Dialogs';
 import MyPosts from './MyPosts';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 export type PropsPostsType = {
-  store: any
+  store: InitialStateType
 }
 
 export type PostsType = {
@@ -44,15 +45,15 @@ export type PostsType = {
 //     </StoreContext.Consumer>
 //   )
 // }
-let mapStateToProps = (state: any) => {
+let mapStateToProps = (state: StateStoreType) => {
   return {
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText
   }
 }
-let mapDispatchToProps = (dispatch: any) => {
+let mapDispatchToProps = (dispatch: Dispatch<ProfileReducerActionType>) => {
   return {
-    updateNewPostText: (text: string) => dispatch(updateNewPostTextActionCreator(text)),
+    updateNewPostText: (text: string) => dispatch(updateNewPostTextActionCreator(text)),  
     addPost: () => dispatch(addPostActionCreator())
   }
 }

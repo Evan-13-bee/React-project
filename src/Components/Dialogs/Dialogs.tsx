@@ -3,7 +3,6 @@ import s from './Dialogs.module.css';
 import { Route } from "react-router-dom";
 import { DialogItem } from './DialogItem/DialogItem';
 import { Message } from './Message/Message';
-import { addNewDialogsMessage } from '../../redux/state';
 
 export type DialogsType = {
     dialogs: Array<ArrayType>,

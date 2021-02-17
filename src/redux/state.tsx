@@ -45,20 +45,20 @@ export let store = {
     this._callSubscriber = observer
   },
   dispatch(action: any) {
-    dialogsReducer(this._state.dialogsPage, action) // если отдать кусок массива в функцию, фунция меняет исходный массив?
-    profileReducer(this._state.profilePage, action)
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action) // если отдать кусок массива в функцию, фунция меняет исходный массив?
+    this._state.profilePage = profileReducer(this._state.profilePage, action)
 
     this._callSubscriber(this._state) // нужен ли здесь параметр, ведь перерисовка вызывается без него
   }
 }
 
-export const addPostActionCreator = () => {
+const addPostActionCreator = () => {
   return {
     type: 'ADD-POST'
   }
 }
 
-export let updateNewPostTextActionCreator = (text: string) => {
+let updateNewPostTextActionCreator = (text: string) => {
   return {
     type: 'UPDATE-NEW-POST-TEXT',
     newText: text
@@ -66,7 +66,7 @@ export let updateNewPostTextActionCreator = (text: string) => {
   }
 }
 
-export let addNewDialogsMessage = (text: string) => {
+let addNewDialogsMessage = (text: string) => {
   return {
     type: 'ADD-NEW-MESSAGE',
     newMessage: text

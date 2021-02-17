@@ -3,13 +3,13 @@ import s from './Dialogs.module.css';
 import { Route } from "react-router-dom";
 import { DialogItem } from './DialogItem/DialogItem';
 import { Message } from './Message/Message';
-import { addNewDialogsMessage } from '../../redux/state';
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
 import { StateStoreType } from '../../redux/ReduxStore';
+import { addNewDialogsMessage, DialogsReducerActionType, DialogsType } from '../../redux/DialogsReducer';
 
 type DialogsContainerType = {
-  store: any
+  store: DialogsType
 }
 
 // export const DialogsContainer = () => {
@@ -28,13 +28,13 @@ type DialogsContainerType = {
 //     </StoreContext.Consumer>
 //   )
 // }
-let mapStateToProps = (state: StateStoreType) => { // откуда state, dispatch
+let mapStateToProps = (state: StateStoreType) => { 
   return {
     dialogs: state.dialogsPage.dialogs,
     messages: state.dialogsPage.messages
   }
 }
-let mapDispatchToProps = (dispatch: any) => {
+let mapDispatchToProps = (dispatch: Dispatch<DialogsReducerActionType>) => {
   return {
     dispatch: (message: string) => dispatch(addNewDialogsMessage(message))
   }

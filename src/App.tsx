@@ -8,6 +8,7 @@ import Dialogs, { DialogsType } from './Components/Dialogs/Dialogs';
 import { BrowserRouter, Route } from 'react-router-dom'
 import { PropsPostsType } from './Components/Profile/MyPosts/MyPosts';
 import { DialogsContainer } from './Components/Dialogs/DialogsContainer';
+import UsersContainer from './Components/Users/UsersContainer';
 
 type AppType = {}
 
@@ -22,8 +23,11 @@ function App(props: AppType) {
           <DialogsContainer />}
         />
         <Route path='/profile' render={() =>
-          <Profile/>}
+          <Profile />}
         /> {/*render () => <Profile posts={posts}/>}  */}
+        <Route path='/users' render={() =>
+          <UsersContainer />}
+        />
       </div>
     </div>
   );

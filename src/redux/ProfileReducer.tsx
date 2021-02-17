@@ -1,9 +1,14 @@
 import React from 'react';
 import { PostsType } from '../Components/Profile/MyPosts/MyPosts';
-type InitialStateType = {
+export type InitialStateType = {
   posts: Array<PostsType>,
   newPostText: string
 }
+
+export type ProfileReducerActionType =
+  ReturnType<typeof addPostActionCreator> |
+  ReturnType<typeof updateNewPostTextActionCreator>
+
 
 let initialState: InitialStateType = {
   posts: [
@@ -15,18 +20,27 @@ let initialState: InitialStateType = {
   newPostText: 'it-camasutra'
 }
 
-export const profileReducer = (state: InitialStateType=initialState, action: any): InitialStateType => {
+export const profileReducer = (state: InitialStateType = initialState, action: ProfileReducerActionType): InitialStateType => {
   if (action.type === 'ADD-POST') {
     let newPost = {
       id: 5,
       message: state.newPostText,
       likesCount: 0
     }
-    state.posts.push(newPost)
-    state.newPostText=''
+    return {
+      ...state,
+      posts: [...state.posts, newPost],
+      newPostText: ''
+    }
   }
   else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-    state.newPostText = action.newText
+    return { ...state, newPostText: action.newText }
+   
   }
   return state
 }
+
+export const addPostActionCreator = () => ({ type: 'ADD-POST' }) as const
+
+export let updateNewPostTextActionCreator = (text: string) => ({ type: 'UPDATE-NEW-POST-TEXT', newText: text } as const
+)

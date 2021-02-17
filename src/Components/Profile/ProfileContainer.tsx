@@ -3,18 +3,17 @@ import s from './Profile.module.css';
 import MyPosts, { PropsPostsType } from './MyPosts/MyPosts';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from './MyPosts/MyPostsContainer';
-import { StoreType } from '../../redux/ReduxStore';
+import Profile from './Profile';
 
-type ProfileType = {
-    store: StoreType
+type ProfileContainerType = {
+    
 }
-const Profile = () => {
+class ProfileContainer extends React.Component <ProfileContainerType>{
+    render() {
     return (
-        <div>
-            <ProfileInfo />
-            <MyPostsContainer />
-        </div>
+        <Profile {...this.props}/>
     )
 }
+}
 
-export default Profile;
+export default ProfileContainer;
